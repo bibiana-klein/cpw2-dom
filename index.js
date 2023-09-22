@@ -8,8 +8,10 @@ function background(){
      *
      * Desenvolva uma função capaz de trocar a cor do fundo da página, ou seja,
      * alterar o background do body para a cor #BECCC3.
-     */
-
+     */ 
+    let bodyElement = document.getElementsByTagName("body")[0];
+    bodyElement.style.backgroundColor = "#BECCC3";
+    
 }
 
 /**
@@ -25,6 +27,10 @@ function show(){
       * Recupera os valores dos campos de texto cujo o id='fname' e id='lname' e apresente o nome
       * e o sobrenome de uma pessoa (separado por um espaço) na div id='result'
       */
+    let firstName = document.getElementById("fname").value;
+    let lastName = document.getElementById("lname").value;
+    let fullName = firstName + " " + lastName;
+    document.getElementById("result").innerHTML = fullName;
 }
 
 /**
@@ -51,6 +57,29 @@ function search(){
      *
      * Além disso, a função removeAllChildren abaixo também pode ser útil para o desenvolvimento da solução
      */
+    let nomesFiltrados = [];
+    let letrasDigitadas = document.getElementById("name").value;
+    for (let i = 0; i < data.length; i++){
+        if (data[i].name.substr(0, letrasDigitadas.length).toUpperCase() == letrasDigitadas.toUpperCase()){
+            nomesFiltrados.push(data[i].name)
+        }
+        if (nomesFiltrados.length == 0){
+            removeAllChildren(document.getElementById("search"));
+        } else {
+            document.getElementById("search").innerHTML = "";
+            nomesFiltrados.forEach(
+                function (item){
+                    let novaDiv = document.createElement("div");
+                    novaDiv.textContent = item;
+                    document.getElementById("search").appendChild(novaDiv);
+                }
+            )
+
+        }
+    }
+
+
+
 
 }
 
